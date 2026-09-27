@@ -9,6 +9,15 @@ Koden er delt i tre filer:
 
 ## Starte på Linux
 
+Ferdige programpakker ligger i `dist/`. Pakk ut pakken i en fast mappe og
+start `Gardsfaktura` på Linux eller `Gardsfaktura.exe` på Windows.
+Disse trenger ikke en separat Python-installasjon. Pakken inneholder
+`KOM-I-GANG.txt` og en fil som lager snarvei på skrivebordet.
+Linux-pakken er bygget for Zorin OS 18 / Ubuntu 24.04 og x86-64.
+Windows-pakken er bygget for Windows 10 eller nyere og x64.
+
+For å kjøre kildekoden under utvikling:
+
 ```bash
 source .venv/bin/activate
 python -m pip install -r requirements.txt
@@ -60,10 +69,10 @@ Hjelpen forsvinner når pekeren flyttes eller du klikker.
 Originalen i databasen endres ikke. Alle nye programvinduer åpnes foran
 foreldrevinduet; fakturalinjer åpnes foran fakturakladden.
 
-Første versjon mangler kreditnota, PDF-forhåndsvisning av kladd og
-ferdige programpakker. Ikke ta den i ordinær bruk før kreditnota er på
-plass og fakturaoppsettet er kontrollert for virksomheten. Windows er
-foreløpig ikke testet.
+Denne versjonen mangler kreditnota og PDF-forhåndsvisning av kladd.
+Ikke ta den i ordinær bruk før kreditnota er på plass og fakturaoppsettet
+er kontrollert for virksomheten. Windows-bygget og fakturatestene er
+kjørt med Windows-Python i Wine; en fysisk Windows-PC er ikke testet.
 
 ## Data og sikkerhetskopi
 
@@ -93,3 +102,14 @@ PDF-leser åpner. Filen blir liggende i systemets midlertidige mappe.
 Testene bruker egne databaser i minnet og endrer ikke lokale fakturadata.
 
 Se `KRAV.md` for avtalte krav og kildehenvisninger.
+
+## Bygge nye programpakker
+
+Installer `requirements-build.txt` i et virtuelt miljø og kjør `python build.py`.
+Det lager programfil, snarveiskript, lisenser, veiledning og en arkivpakke i
+`dist/`. Bygg Linux-pakken på Linux og Windows-pakken med Windows-Python.
+Windows-Python kan også kjøres i et separat Wine-miljø på Linux.
+PyInstaller brukes slik det er beskrevet i
+[dokumentasjonen](https://pyinstaller.org/en/stable/usage.html).
+Zorin OS 18 har Ubuntu 24.04 som base, se
+[Zorins tekniske detaljer](https://zorin.com/os/details/).
